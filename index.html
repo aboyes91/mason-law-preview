@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mason Law Office, LLC — Nelsonville, Ohio</title>
+<link rel="stylesheet" href="style.css" />
+<style>
+  /* ── HOME-ONLY STYLES ── */
+
+  /* HERO */
+  .hero {
+    min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr;
+    position: relative; overflow: hidden; background: var(--cream);
+  }
+  .hero-left {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 10rem 4rem 6rem 6rem; position: relative; z-index: 2;
+  }
+  .hero-eyebrow { font-size: 0.72rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--lavender-dk); margin-bottom: 1.8rem; }
+  .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(3.2rem, 5.5vw, 5.8rem); font-weight: 300; line-height: 1.05; color: var(--ink); margin-bottom: 2rem; }
+  .hero-title em { font-style: italic; color: var(--lavender-dk); }
+  .hero-sub { font-size: 0.95rem; font-weight: 300; line-height: 1.8; color: rgba(42,38,64,0.6); max-width: 38ch; margin-bottom: 3rem; }
+  .hero-actions { display: flex; gap: 1.2rem; align-items: center; }
+  .hero-right { position: relative; overflow: hidden; }
+  .hero-right::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, var(--cream) 0%, transparent 35%); z-index: 1; }
+  .hero-right-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse at 70% 30%, rgba(185,169,217,0.35) 0%, transparent 55%),
+      radial-gradient(ellipse at 25% 75%, rgba(107,122,143,0.18) 0%, transparent 50%),
+      linear-gradient(160deg, #EAE6D8 0%, #E0DAF0 100%);
+  }
+  .hero-seal { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 2; width: 340px; height: 340px; }
+  .seal-ring    { fill: none; stroke: rgba(123,104,176,0.25); stroke-width: 1; }
+  .seal-ring-2  { fill: none; stroke: rgba(123,104,176,0.12); stroke-width: 1; }
+  .seal-center  { fill: rgba(185,169,217,0.12); stroke: rgba(123,104,176,0.35); stroke-width: 0.8; }
+  .seal-text    { font-family: 'Jost', sans-serif; font-size: 10px; fill: rgba(42,38,64,0.45); letter-spacing: 2.5px; text-transform: uppercase; }
+  .seal-initial { font-family: 'Cormorant Garamond', serif; font-size: 72px; fill: rgba(42,38,64,0.1); font-weight: 300; }
+  .seal-line    { stroke: rgba(123,104,176,0.2); stroke-width: 0.8; }
+  .hero-stat-bar { position: absolute; bottom: 3rem; right: 3rem; z-index: 3; display: flex; flex-direction: column; gap: 1.8rem; }
+  .stat-item { text-align: right; }
+  .stat-number { font-family: 'Cormorant Garamond', serif; font-size: 2.4rem; font-weight: 300; color: var(--lavender-dk); line-height: 1; display: block; }
+  .stat-label { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(42,38,64,0.45); }
+  .v-rule { position: absolute; top: 12%; bottom: 12%; left: 50%; width: 1px; background: linear-gradient(to bottom, transparent, rgba(123,104,176,0.25) 30%, rgba(123,104,176,0.25) 70%, transparent); z-index: 5; }
+
+  /* OVERVIEW CARDS */
+  #overview { background: var(--cream-dk); position: relative; }
+  #overview::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(to right, transparent, rgba(123,104,176,0.3), transparent); }
+  .overview-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px; background: rgba(123,104,176,0.15); border: 1.5px solid rgba(123,104,176,0.15); }
+  .overview-card {
+    background: var(--cream-dk); padding: 3rem 2.5rem;
+    display: flex; flex-direction: column;
+    transition: background 0.3s; position: relative; overflow: hidden;
+    text-decoration: none; color: inherit;
+  }
+  .overview-card::after { content: ''; position: absolute; bottom: 0; left: 0; height: 2px; width: 0; background: var(--lavender-dk); transition: width 0.4s ease; }
+  .overview-card:hover { background: #E8E2F5; }
+  .overview-card:hover::after { width: 100%; }
+  .card-icon { font-size: 1.6rem; margin-bottom: 1.5rem; display: block; opacity: 0.75; }
+  .card-title { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 400; color: var(--ink); margin-bottom: 0.9rem; line-height: 1.2; }
+  .card-body { font-size: 0.85rem; font-weight: 300; line-height: 1.75; color: rgba(42,38,64,0.6); flex: 1; }
+  .card-link { margin-top: 1.8rem; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--lavender-dk); display: flex; align-items: center; gap: 0.5rem; }
+  .card-link::after { content: '→'; transition: transform 0.2s; }
+  .overview-card:hover .card-link::after { transform: translateX(4px); }
+
+  /* ABOUT STRIP */
+  #about-strip { background: var(--cream); display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+  .about-strip-left {
+    padding: 7rem 5rem 7rem 6rem;
+    border-right: 1px solid rgba(123,104,176,0.12);
+  }
+  .about-strip-right { padding: 7rem 6rem 7rem 5rem; }
+  .about-strip-body { font-size: 0.9rem; font-weight: 300; line-height: 1.9; color: rgba(42,38,64,0.65); margin-bottom: 2rem; }
+  .award-badge {
+    display: inline-flex; align-items: center; gap: 0.8rem;
+    border: 1px solid rgba(123,104,176,0.25); padding: 0.8rem 1.2rem;
+    margin-bottom: 1rem;
+  }
+  .award-badge-star { font-size: 1rem; }
+  .award-badge-text { font-size: 0.78rem; font-weight: 300; color: rgba(42,38,64,0.7); line-height: 1.4; }
+  .about-strip-cta { margin-top: 2.5rem; }
+
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-left { padding: 8rem 2rem 4rem; }
+    .hero-right { display: none; }
+    .v-rule { display: none; }
+    .overview-grid { grid-template-columns: 1fr; }
+    #about-strip { grid-template-columns: 1fr; }
+    .about-strip-left { padding: 5rem 2rem 2rem; border-right: none; border-bottom: 1px solid rgba(123,104,176,0.12); }
+    .about-strip-right { padding: 3rem 2rem 5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="index.html"><img src="mason_law_office_logo.png" alt="Mason Law Office, LLC" /></a>
+  <ul class="nav-links">
+    <li><a href="practice.html">Practice Areas</a></li>
+    <li><a href="title.html">Title Agency</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a class="nav-cta" href="contact.html">Schedule a Consultation</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="v-rule"></div>
+  <div class="hero-left">
+    <p class="hero-eyebrow fade-up">Mason Law Office, LLC &mdash; Nelsonville, Ohio</p>
+    <h1 class="hero-title fade-up delay-1">
+      Protecting<br><em>What Matters</em><br>Most
+    </h1>
+    <p class="hero-sub fade-up delay-2">
+      We guide families and businesses through life's most important legal decisions — with clarity, compassion, and more than 30 years of experience in the legal field.
+    </p>
+    <div class="hero-actions fade-up delay-3">
+      <a class="btn-primary" href="contact.html">Schedule a Consultation</a>
+      <a class="btn-ghost" href="practice.html">Our Practice Areas</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-right-bg"></div>
+    <svg class="hero-seal" viewBox="0 0 340 340">
+      <circle class="seal-ring-2 spin-slow" cx="170" cy="170" r="155" stroke-dasharray="4 8" />
+      <circle class="seal-ring" cx="170" cy="170" r="138" />
+      <circle class="seal-ring-2" cx="170" cy="170" r="120" stroke-dasharray="2 6" />
+      <circle class="seal-center" cx="170" cy="170" r="95" />
+      <line class="seal-line" x1="170" y1="75" x2="170" y2="265" />
+      <line class="seal-line" x1="75" y1="170" x2="265" y2="170" />
+      <text class="seal-initial" x="170" y="200" text-anchor="middle">ML</text>
+      <path id="topArc" fill="none" d="M 65,170 A 105,105 0 0,1 275,170" />
+      <text class="seal-text"><textPath href="#topArc" startOffset="8%">Mason Law Office, LLC</textPath></text>
+      <path id="botArc" fill="none" d="M 65,170 A 105,105 0 0,0 275,170" />
+      <text class="seal-text"><textPath href="#botArc" startOffset="5%">Nelsonville, Ohio &bull; masonlaw.net</textPath></text>
+    </svg>
+    <div class="hero-stat-bar">
+      <div class="stat-item">
+        <span class="stat-number">30+</span>
+        <span class="stat-label">Years in the Legal Field</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">6</span>
+        <span class="stat-label">Practice Areas</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">2025</span>
+        <span class="stat-label">Best Law Firm, Athens Co.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-strip">
+  <div class="marquee-track">
+    <span>Probate Law</span>
+    <span>Estate Planning</span>
+    <span>Real Estate</span>
+    <span>Landlord/Tenant Law</span>
+    <span>Corporate Law</span>
+    <span>Civil Litigation</span>
+    <span>Real Estate Closings</span>
+    <span>Title Insurance</span>
+    <span>Probate Law</span>
+    <span>Estate Planning</span>
+    <span>Real Estate</span>
+    <span>Landlord/Tenant Law</span>
+    <span>Corporate Law</span>
+    <span>Civil Litigation</span>
+    <span>Real Estate Closings</span>
+    <span>Title Insurance</span>
+  </div>
+</div>
+
+<!-- OVERVIEW CARDS -->
+<section id="overview">
+  <span class="section-label">What We Do</span>
+  <h2 class="section-title">How We Can Help</h2>
+  <div class="overview-grid">
+    <a class="overview-card" href="practice.html">
+      <span class="card-icon">⚖️</span>
+      <h3 class="card-title">Legal Practice</h3>
+      <p class="card-body">From probate and estate planning to real estate, landlord/tenant matters, corporate law, and civil litigation — we provide experienced, personal legal counsel across six practice areas.</p>
+      <span class="card-link">View Practice Areas</span>
+    </a>
+    <a class="overview-card" href="title.html">
+      <span class="card-icon">🏠</span>
+      <h3 class="card-title">Foundation Title Agency</h3>
+      <p class="card-body">Our sister company offers full real estate closing services — residential and commercial — with title insurance underwritten by First American Title Insurance Company.</p>
+      <span class="card-link">Learn About Title Services</span>
+    </a>
+    <a class="overview-card" href="contact.html">
+      <span class="card-icon">📋</span>
+      <h3 class="card-title">Schedule a Consultation</h3>
+      <p class="card-body">We serve clients throughout Athens, Hocking, and surrounding Ohio counties. Reach out to discuss your situation — we're here to help you find the right path forward.</p>
+      <span class="card-link">Get in Touch</span>
+    </a>
+  </div>
+</section>
+
+<!-- ABOUT STRIP -->
+<section id="about-strip">
+  <div class="about-strip-left">
+    <span class="section-label">About Anna M. Mason</span>
+    <h2 class="section-title">Experience.<br><em style="font-family:'Cormorant Garamond',serif;color:var(--lavender-dk);">Dedication.</em></h2>
+    <p class="about-strip-body">Anna Mason began her legal career as a paralegal in 1993 and spent more than 20 years building deep expertise before earning her Juris Doctorate from Capital University Law School in 2020 — graduating <em>Cum Laude</em> from Ohio University along the way.</p>
+    <p class="about-strip-body">She is the current President of the Athens County Bar Association and serves on multiple Ohio State Bar Association councils. She also holds an Ohio title insurance agent license and founded Foundation Title Agency, LLC in 2021.</p>
+    <div class="about-strip-cta">
+      <a class="btn-primary" href="practice.html#about">Meet the Team</a>
+    </div>
+  </div>
+  <div class="about-strip-right">
+    <span class="section-label">Recognition &amp; Awards</span>
+    <h2 class="section-title" style="margin-bottom:2rem;">Trusted by<br>Our Community</h2>
+    <div class="award-badge">
+      <span class="award-badge-star">★</span>
+      <span class="award-badge-text"><strong>Best Law Firm in Athens County</strong><br>BusinessRate.com — Based on Customer Reviews, 2025</span>
+    </div>
+    <div class="award-badge">
+      <span class="award-badge-star">★</span>
+      <span class="award-badge-text"><strong>LASCO Regional Award for Outstanding Service</strong><br>Outstanding Service by an Individual, 2025</span>
+    </div>
+    <div class="award-badge">
+      <span class="award-badge-star">★</span>
+      <span class="award-badge-text"><strong>Capital Law School Ambassador Award</strong><br>Capital University Law School, Class of 2020</span>
+    </div>
+    <div style="margin-top:2.5rem;">
+      <a class="btn-ghost" href="contact.html">Schedule Your Consultation &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-logo"><img src="mason_law_office_logo.png" alt="Mason Law Office, LLC" /></span>
+  <span class="footer-copy">
+    &copy; 2026 Mason Law Office, LLC. All rights reserved. Attorney advertising.<br>
+    24 September St., Nelsonville, OH 45764 &bull; 740-300-5022
+  </span>
+  <ul class="footer-links">
+    <li><a href="#">Privacy Policy</a></li>
+    <li><a href="#">Disclaimer</a></li>
+  </ul>
+</footer>
+
+</body>
+</html>

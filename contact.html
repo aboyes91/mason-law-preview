@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Contact — Mason Law Office, LLC</title>
+<link rel="stylesheet" href="style.css" />
+<style>
+  /* ── CONTACT PAGE STYLES ── */
+
+  #contact-main {
+    background: var(--cream-dk);
+    padding: 6rem 6rem 7rem;
+    position: relative;
+  }
+  #contact-main::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(123,104,176,0.3), transparent);
+  }
+
+  .contact-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 7rem;
+    align-items: start;
+  }
+
+  /* LEFT — Info */
+  .contact-info {}
+  .contact-detail { margin-bottom: 2.8rem; }
+  .detail-label { font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--lavender-dk); margin-bottom: 0.5rem; display: block; }
+  .detail-value { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: var(--ink); font-weight: 300; line-height: 1.65; }
+  .detail-value a { color: var(--ink); text-decoration: none; border-bottom: 1px solid rgba(123,104,176,0.3); transition: color 0.2s, border-color 0.2s; }
+  .detail-value a:hover { color: var(--lavender-dk); border-color: var(--lavender-dk); }
+  .hours-grid { display: grid; grid-template-columns: auto 1fr; gap: 0.35rem 2rem; margin-top: 0.5rem; }
+  .hours-day { font-size: 0.82rem; color: rgba(42,38,64,0.6); font-weight: 300; }
+  .hours-time { font-size: 0.82rem; color: rgba(42,38,64,0.6); font-weight: 300; }
+
+  .info-divider { border: none; border-top: 1px solid rgba(123,104,176,0.12); margin: 1rem 0 2.8rem; }
+
+  /* Serving areas box */
+  .serving-box {
+    border: 1px solid rgba(123,104,176,0.18);
+    padding: 1.5rem;
+    background: rgba(123,104,176,0.04);
+  }
+  .serving-label { font-size: 0.62rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--lavender-dk); margin-bottom: 0.8rem; display: block; }
+  .serving-text { font-size: 0.84rem; font-weight: 300; line-height: 1.8; color: rgba(42,38,64,0.65); }
+
+  /* RIGHT — Form */
+  .contact-form-wrap {}
+  .form-heading { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; color: var(--ink); margin-bottom: 0.5rem; line-height: 1.2; }
+  .form-sub { font-size: 0.85rem; font-weight: 300; color: rgba(42,38,64,0.55); margin-bottom: 2.5rem; line-height: 1.7; }
+  .contact-form { display: flex; flex-direction: column; gap: 1.3rem; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.3rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.5rem; }
+  .form-group label { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(123,104,176,0.8); }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    background: rgba(255,255,255,0.75);
+    border: 1px solid rgba(123,104,176,0.25);
+    color: var(--ink); padding: 0.9rem 1rem;
+    font-family: 'Jost', sans-serif; font-size: 0.88rem; font-weight: 300;
+    outline: none; transition: border-color 0.25s, background 0.25s; width: 100%;
+    -webkit-appearance: none;
+  }
+  .form-group input::placeholder,
+  .form-group textarea::placeholder { color: rgba(42,38,64,0.3); }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus { border-color: var(--lavender-dk); background: #fff; }
+  .form-group select option { background: var(--cream); color: var(--ink); }
+  .form-group textarea { resize: vertical; min-height: 140px; }
+  .form-submit {
+    font-family: 'Jost', sans-serif; font-size: 0.75rem; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--cream); background: var(--ink);
+    border: none; padding: 1.1rem 2.5rem; cursor: pointer;
+    transition: background 0.25s, transform 0.2s; align-self: flex-start;
+  }
+  .form-submit:hover { background: var(--lavender-dk); transform: translateY(-2px); }
+  .form-disclaimer { font-size: 0.72rem; color: rgba(42,38,64,0.4); line-height: 1.6; margin-top: 0.5rem; }
+
+  /* BOTH COMPANIES ROW */
+  .both-companies {
+    background: var(--ink);
+    padding: 4rem 6rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    border-top: 1px solid rgba(185,169,217,0.1);
+  }
+  .company-col {}
+  .company-col-label { font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--lavender); margin-bottom: 0.6rem; display: block; }
+  .company-col-name { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 300; color: var(--cream); margin-bottom: 1rem; line-height: 1.2; }
+  .company-col-detail { font-size: 0.83rem; font-weight: 300; color: rgba(245,243,236,0.5); line-height: 1.9; }
+  .company-col-detail a { color: var(--lavender); text-decoration: none; border-bottom: 1px solid rgba(185,169,217,0.3); }
+  .company-col-detail a:hover { color: var(--cream); }
+  .company-divider { border: none; border-left: 1px solid rgba(185,169,217,0.1); }
+
+  @media (max-width: 900px) {
+    #contact-main { padding: 4rem 2rem 5rem; }
+    .contact-layout { grid-template-columns: 1fr; gap: 3rem; }
+    .both-companies { grid-template-columns: 1fr; padding: 3rem 2rem; gap: 2.5rem; }
+    .company-divider { display: none; }
+    .form-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="index.html"><img src="mason_law_office_logo.png" alt="Mason Law Office, LLC" /></a>
+  <ul class="nav-links">
+    <li><a href="practice.html">Practice Areas</a></li>
+    <li><a href="title.html">Title Agency</a></li>
+    <li><a href="contact.html" class="active">Contact</a></li>
+  </ul>
+  <a class="nav-cta" href="contact.html">Schedule a Consultation</a>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="page-header-accent"></div>
+  <span class="page-header-eyebrow">Mason Law Office, LLC &mdash; Nelsonville, Ohio</span>
+  <h1 class="page-header-title">Let's <em>Talk</em></h1>
+  <p class="page-header-sub">We're here to help. Reach out to schedule a consultation or ask a question — we look forward to hearing from you.</p>
+</div>
+
+<!-- CONTACT MAIN -->
+<section id="contact-main">
+  <div class="contact-layout">
+
+    <!-- LEFT: Contact Info -->
+    <div class="contact-info">
+      <span class="section-label">Reach Us</span>
+
+      <div class="contact-detail">
+        <span class="detail-label">Phone</span>
+        <span class="detail-value"><a href="tel:7403005022">740-300-5022</a></span>
+      </div>
+
+      <div class="contact-detail">
+        <span class="detail-label">Fax</span>
+        <span class="detail-value">740-300-5030</span>
+      </div>
+
+      <div class="contact-detail">
+        <span class="detail-label">Anna Mason — Attorney</span>
+        <span class="detail-value"><a href="mailto:anna@masonlaw.net">anna@masonlaw.net</a></span>
+      </div>
+
+      <div class="contact-detail">
+        <span class="detail-label">Tracie Newlun — Legal Assistant</span>
+        <span class="detail-value"><a href="mailto:tracie@masonlaw.net">tracie@masonlaw.net</a></span>
+      </div>
+
+      <div class="contact-detail">
+        <span class="detail-label">Office Address</span>
+        <span class="detail-value">
+          24 September St.<br>
+          Nelsonville, OH 45764
+        </span>
+      </div>
+
+      <div class="contact-detail">
+        <span class="detail-label">Office Hours</span>
+        <div class="hours-grid">
+          <span class="hours-day">Monday &ndash; Friday</span>
+          <span class="hours-time">8:00am &ndash; 4:30pm</span>
+          <span class="hours-day">Saturday &ndash; Sunday</span>
+          <span class="hours-time">Closed</span>
+        </div>
+      </div>
+
+      <hr class="info-divider" />
+
+      <div class="serving-box">
+        <span class="serving-label">Areas We Serve</span>
+        <p class="serving-text">Mason Law Office and Foundation Title Agency serve clients throughout Athens County, Hocking County, and surrounding communities in southeastern Ohio.</p>
+      </div>
+    </div>
+
+    <!-- RIGHT: Form -->
+    <div class="contact-form-wrap">
+      <h2 class="form-heading">Send Us a Message</h2>
+      <p class="form-sub">Fill out the form below and we'll be in touch shortly. For urgent matters, please call us directly at <a href="tel:7403005022" style="color:var(--lavender-dk);">740-300-5022</a>.</p>
+      <form class="contact-form" onsubmit="return false;">
+        <div class="form-row">
+          <div class="form-group">
+            <label>First Name</label>
+            <input type="text" placeholder="Jane" />
+          </div>
+          <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" placeholder="Smith" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" placeholder="jane@example.com" />
+          </div>
+          <div class="form-group">
+            <label>Phone</label>
+            <input type="tel" placeholder="(740) 000-0000" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>How Did You Hear About Us?</label>
+          <select>
+            <option value="" disabled selected>Select one&hellip;</option>
+            <option>Referral from a friend or family member</option>
+            <option>Online search</option>
+            <option>BusinessRate.com</option>
+            <option>Athens County Bar Association</option>
+            <option>Returning client</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Area of Interest</label>
+          <select>
+            <option value="" disabled selected>Select a practice area&hellip;</option>
+            <option>Probate Law</option>
+            <option>Estate Planning</option>
+            <option>Real Estate</option>
+            <option>Landlord / Tenant Law</option>
+            <option>Corporate Law</option>
+            <option>Civil Litigation</option>
+            <option>Real Estate Closing / Title Services</option>
+            <option>Not Sure &mdash; Need Guidance</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>How Can We Help?</label>
+          <textarea placeholder="Tell us briefly about your situation&hellip;"></textarea>
+        </div>
+        <button class="form-submit">Send Message &rarr;</button>
+        <p class="form-disclaimer">Submitting this form does not create an attorney-client relationship. Please do not include confidential or time-sensitive information in your message.</p>
+      </form>
+    </div>
+
+  </div>
+</section>
+
+<!-- BOTH COMPANIES -->
+<div class="both-companies">
+  <div class="company-col">
+    <span class="company-col-label">Law Office</span>
+    <div class="company-col-name">Mason Law Office, LLC</div>
+    <p class="company-col-detail">
+      Anna M. Mason, Attorney<br>
+      <a href="mailto:anna@masonlaw.net">anna@masonlaw.net</a><br><br>
+      Tracie Newlun, Legal Assistant<br>
+      <a href="mailto:tracie@masonlaw.net">tracie@masonlaw.net</a><br><br>
+      24 September St., Nelsonville, OH 45764<br>
+      <a href="tel:7403005022">740-300-5022</a> &bull; Fax: 740-300-5030
+    </p>
+  </div>
+  <hr class="company-divider" />
+  <div class="company-col">
+    <span class="company-col-label">Title Agency</span>
+    <div class="company-col-name">Foundation Title Agency, LLC</div>
+    <p class="company-col-detail">
+      Full real estate closing services<br>
+      for residential &amp; commercial transactions.<br><br>
+      Title insurance underwritten by<br>
+      First American Title Insurance Company.<br><br>
+      Same address &amp; phone as Mason Law Office.<br>
+      <a href="title.html">Learn more about title services &rarr;</a>
+    </p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-logo"><img src="mason_law_office_logo.png" alt="Mason Law Office, LLC" /></span>
+  <span class="footer-copy">
+    &copy; 2026 Mason Law Office, LLC. All rights reserved. Attorney advertising.<br>
+    24 September St., Nelsonville, OH 45764 &bull; 740-300-5022
+  </span>
+  <ul class="footer-links">
+    <li><a href="#">Privacy Policy</a></li>
+    <li><a href="#">Disclaimer</a></li>
+  </ul>
+</footer>
+
+</body>
+</html>
